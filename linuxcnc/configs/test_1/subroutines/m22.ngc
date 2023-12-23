@@ -1,0 +1,34 @@
+o<m22> sub
+
+; Move Carousel to the home position - left
+
+(print, o<M22>)
+G0 G53 Z-0.07 ; move to tool change position
+m64 p7 ; orient spindle
+
+M24
+
+
+M65 P6 ; turn off atc down
+M64 P5 ; turn on atc up
+M66 P6 L3 Q4 ; check atc is up
+
+M65 P2 ; release the drawbar to clamp the tool
+M66 P5 L3 Q1 ; check the tool clamped sensor
+O140 if [#5399 LT 0]
+    (abort, failed to reclamp tool)
+O140 endif
+
+M65 P7 ;turn off spindle lock
+
+M65 P1 ; Move Carousel home
+M64 P0
+
+M66 P8 L3 Q4 ;check carousel in position sensor
+   O150 if [#5399 LT 0]
+    (abort, failed to send carousel home) ; abort if the sensor does not activate in 5 seconds
+   O150 endif
+
+o<m22> endsub [1]
+
+M2

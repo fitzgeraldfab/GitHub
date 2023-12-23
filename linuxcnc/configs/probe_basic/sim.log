@@ -1,0 +1,2157 @@
+2023-01-31 14:26:30,262 - qtpyvcp - INFO - Logging to /home/forgedauthority/linuxcnc/configs/probe_basic/sim.log
+2023-01-31 14:26:30,262 - qtpyvcp - INFO - QtPyVCP Version: python3_master+306.g93e8344f
+2023-01-31 14:26:30,283 - qtpyvcp - DEBUG - Qt Version: 5.15.2
+2023-01-31 14:26:30,283 - qtpyvcp - DEBUG - Qt API: QT_API
+2023-01-31 14:26:30,283 - qtpyvcp - DEBUG - QtPy Version: 2.2.1
+2023-01-31 14:26:30,284 - qtpyvcp - DEBUG - Command line options:
+{
+    "command_line_args": null,
+    "config_file": "/home/forgedauthority/linuxcnc/configs/probe_basic/custom_config.yml",
+    "confirm_exit": false,
+    "develop": false,
+    "fullscreen": null,
+    "help": false,
+    "hide_cursor": false,
+    "hide_menu_bar": false,
+    "hide_status_bar": false,
+    "info": false,
+    "ini": "/home/forgedauthority/linuxcnc/configs/probe_basic/probe_basic.ini",
+    "log_file": "/home/forgedauthority/linuxcnc/configs/probe_basic/sim.log",
+    "log_level": "DEBUG",
+    "maximize": null,
+    "perfmon": false,
+    "position": "0x0",
+    "qt_api": null,
+    "size": null,
+    "stylesheet": null,
+    "theme": null,
+    "version": false
+}
+2023-01-31 14:26:30,334 - qtpyvcp.utilities.config_loader - DEBUG - Loading config files: ['/home/forgedauthority/linuxcnc/configs/probe_basic/custom_config.yml', '/home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.yml', '/home/forgedauthority/dev/qtpyvcp/qtpyvcp/yaml_lib/default_config.yml']
+2023-01-31 14:26:30,708 - qtpyvcp.utilities.config_loader - DEBUG - Merged YAML config:
+
+default_menubar:
+- title: File
+  items:
+  - title: '&Open ...'
+    action: win.openFile
+    shortcut: ctrl+o
+  - title: '&Recent Files'
+    provider: qtpyvcp.widgets.recent_files_menu:RecentFilesMenu
+  - title: '&Reload'
+    action: program.reload
+  - title: '&Close'
+    action: program.clear
+  - title: Save &As
+    action: null
+  - separator
+  - title: Edit ToolTable
+    action: win.showDialog
+    args:
+    - tool_edit
+  - separator
+  - title: Exit
+    action: app.exit
+    shortcut: ctrl+q
+- title: Machine
+  items:
+  - title: Toggle E-Stop
+    action: machine.estop.toggle
+    shortcut: F1
+  - title: Toggle Power
+    action: machine.power.toggle
+    shortcut: F2
+  - separator
+  - title: Run Program
+    action: program.run
+    shortcut: R
+  - title: Step
+    action: program.step
+    shortcut: T
+  - title: Pause
+    action: program.pause
+    shortcut: P
+  - title: Resume
+    action: program.resume
+    shortcut: R
+  - title: Abort
+    action: program.abort
+    shortcut: esc
+  - title: Optional Stop
+    action: program.optional_stop.toggle
+  - title: Optional Skip
+    action: program.optional_skip.toggle
+  - separator
+  - title: Homing
+    provider: qtpyvcp.widgets.menus.homing_menu:HomingMenu
+  - title: Cooling
+    items:
+    - title: Flood
+      action: coolant.flood.toggle
+      shortcut: F7
+    - title: Mist
+      action: coolant.mist.toggle
+      shortcut: F8
+  - title: Set Work Offsets
+    action: win.showDialog
+    args:
+    - set_work_offsets
+  - separator
+  - title: Override Limits
+    action: machine.override_limits
+- title: Settings
+  items:
+  - title: Show On-screen Keyboard
+    action: settings.virtual-input.enable
+- title: View
+  items:
+  - title: Show Gridlines
+    action: settings.backplot.show-grid
+  - separator
+  - title: Show Machine Bounds
+    action: settings.backplot.show-machine-bounds
+  - title: Show Machine Labels
+    action: settings.backplot.show-machine-labels
+  - title: Show Machine Ticks
+    action: settings.backplot.show-machine-ticks
+  - separator
+  - title: Show Program Bounds
+    action: settings.backplot.show-program-bounds
+  - title: Use Colors for Motion type
+    action: settings.backplot.multitool-colors
+  - separator
+  - title: Perspective View
+    action: settings.backplot.perspective-view
+  - title: View Angle
+    action: settings.backplot.view
+- title: Tools
+  items:
+  - title: HAL Meter
+    action: tool.halmeter
+  - title: HAL Scope
+    action: tool.halscope
+  - title: HAL Show
+    action: tool.halshow
+  - title: LCNC Status
+    action: tool.status
+  - title: Calibration
+    action: tool.calibration
+  - title: Classicladder PLC
+    action: tool.classicladder
+  - title: Simulated Probe
+    action: tool.simulate_probe
+- title: About
+  items:
+  - title: About QtPyVCP
+    action: win.showDialog
+    args:
+    - about_qtpyvcp
+  - title: About Qt
+    action: app.aboutQt
+vcp:
+  name: Probe Basic
+  version: v0.0.1
+  author: Chris Polanski
+  description: Probe Basic description ...
+windows:
+  mainwindow:
+    provider: probe_basic.probe_basic:ProbeBasic
+    kwargs:
+      menu: &id001
+      - title: File
+        items:
+        - title: '&Open ...'
+          action: win.openFile
+          shortcut: ctrl+o
+        - title: '&Recent Files'
+          provider: qtpyvcp.widgets.recent_files_menu:RecentFilesMenu
+        - title: '&Reload'
+          action: program.reload
+        - title: '&Close'
+          action: program.clear
+        - title: Save &As
+          action: null
+        - separator
+        - title: Exit
+          action: app.exit
+          shortcut: ctrl+q
+      - title: Machine
+        items:
+        - title: Toggle E-Stop
+          action: machine.estop.toggle
+          shortcut: F1
+        - title: Toggle Power
+          action: machine.power.toggle
+          shortcut: F2
+        - separator
+        - title: Run Program
+          action: program.run
+          shortcut: R
+        - title: Step
+          action: program.step
+          shortcut: T
+        - title: Pause
+          action: program.pause
+          shortcut: P
+        - title: Resume
+          action: program.resume
+          shortcut: R
+        - title: Abort
+          action: program.abort
+          shortcut: esc
+        - title: Optional Stop
+          action: program.optional_stop.toggle
+        - title: Optional Skip
+          action: program.optional_skip.toggle
+        - separator
+        - title: Homing
+          provider: qtpyvcp.widgets.menus.homing_menu:HomingMenu
+        - title: Cooling
+          items:
+          - title: Flood
+            action: coolant.flood.toggle
+            shortcut: F7
+          - title: Mist
+            action: coolant.mist.toggle
+            shortcut: F8
+        - title: Set Work Offsets
+          action: win.showDialog
+          args:
+          - set_work_offsets
+        - separator
+        - title: Override Limits
+          action: machine.override_limits
+      - title: Settings
+        items:
+        - title: Show On-screen Keyboard
+          action: settings.virtual-input.enable
+      - title: View
+        items:
+        - title: Show Gridlines
+          action: settings.backplot.show-grid
+        - separator
+        - title: Show Machine Bounds
+          action: settings.backplot.show-machine-bounds
+        - title: Show Machine Labels
+          action: settings.backplot.show-machine-labels
+        - title: Show Machine Ticks
+          action: settings.backplot.show-machine-ticks
+        - separator
+        - title: Show Program Bounds
+          action: settings.backplot.show-program-bounds
+        - title: Show Program Labels
+          action: settings.backplot.show-program-labels
+        - title: Show Program Ticks
+          action: settings.backplot.show-program-ticks
+        - separator
+        - title: Perspective View
+          action: settings.backplot.perspective-view
+        - title: View Angle
+          action: settings.backplot.view
+      - title: Tools
+        items:
+        - title: HAL Meter
+          action: tool.halmeter
+        - title: HAL Scope
+          action: tool.halscope
+        - title: HAL Show
+          action: tool.halshow
+        - title: LCNC Status
+          action: tool.status
+        - title: Calibration
+          action: tool.calibration
+        - title: Classicladder PLC
+          action: tool.classicladder
+      - title: About
+        items:
+        - title: About Probe Basic
+          action: win.showDialog
+          args:
+          - about_probebasic
+        - title: About QtPyVCP
+          action: win.showDialog
+          args:
+          - about_qtpyvcp
+        - title: About Qt
+          action: app.aboutQt
+      fullscreen: true
+      ui_file: /home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.ui
+      confirm_exit: false
+data_plugins:
+  status:
+    provider: qtpyvcp.plugins.status:Status
+    kwargs:
+      cycle_time: 75
+  persistent_data_manager:
+    provider: qtpyvcp.plugins.persistent_data_manager:PersistentDataManager
+    kwargs:
+      serialization_method: pickle
+  settings:
+    provider: qtpyvcp.plugins.settings:Settings
+  position:
+    provider: qtpyvcp.plugins.positions:Position
+    kwargs:
+      report_actual_pos: true
+      use_program_units: true
+  tooltable:
+    provider: qtpyvcp.plugins.tool_table:ToolTable
+    kwargs:
+      columns: TXYZDR
+  offsettable:
+    provider: qtpyvcp.plugins.offset_table:OffsetTable
+  notifications:
+    provider: qtpyvcp.plugins.notifications:Notifications
+    kwargs:
+      enabled: true
+      mode: native
+      max_messages: 5
+      persistent: true
+  file_locations:
+    provider: qtpyvcp.plugins.file_locations:FileLocations
+    log_level: debug
+    kwargs:
+      default_location: NC Files
+      local_locations:
+        Home: ~/
+        Desktop: ~/Desktop
+        NC Files: ~/linuxcnc/nc_files
+      network_locations: null
+    exportedhal:
+      provider: qtpyvcp.plugins.exported_hal:ExportedHal
+  virtual_input:
+    provider: qtpyvcp.plugins.virtual_input_manager:VirtualInputManager
+dialogs:
+  open_file:
+    provider: qtpyvcp.widgets.dialogs.open_file_dialog:OpenFileDialog
+  set_work_offsets:
+    provider: qtpyvcp.widgets.dialogs.offsets_dialog:OffsetsDialog
+  tool_edit:
+    provider: qtpyvcp.widgets.dialogs.tool_edit_dialog:ToolEditDialog
+  probe_sim:
+    provider: qtpyvcp.widgets.dialogs.probesim_dialog:ProbeSim
+  about_qtpyvcp:
+    provider: qtpyvcp.widgets.dialogs.about_dialog:AboutDialog
+  about_probebasic:
+    provider: qtpyvcp.widgets.dialogs.about_dialog:AboutDialog
+    kwargs:
+      ui_file: /home/forgedauthority/dev/probe_basic/probe_basic/about.ui
+virtual_input_providers:
+  number:
+    provider: qtpyvcp.widgets.virtual_input.virtual_input:VirtualInput
+    kwargs:
+      ui_file: /home/forgedauthority/dev/qtpyvcp/qtpyvcp/yaml_lib/../widgets/virtual_input/numpad.ui
+  text:
+    provider: qtpyvcp.widgets.virtual_input.virtual_input:VirtualInput
+    kwargs:
+      ui_file: /home/forgedauthority/dev/qtpyvcp/qtpyvcp/yaml_lib/../widgets/virtual_input/keyboard.ui
+application:
+  provider: qtpyvcp.app.application:VCPApplication
+  kwargs:
+    stylesheet: /home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.qss
+    custom_fonts: /home/forgedauthority/dev/probe_basic/probe_basic/fonts
+settings:
+  touch-probe.diameter-offset:
+    default_value: 0.123123
+    persistent: true
+    min_value: 0
+    max_value: 1
+  dro.display-units:
+    default_value: 0
+    options:
+    - Auto
+    - Inch
+    - Metric
+  dro.lathe-radius-mode:
+    default_value: 0
+    options:
+    - Auto
+    - Radius
+    - Diameter
+  dro.inch-format:
+    default_value: '%9.4f'
+    value_type: str
+  dro.millimeter-format:
+    default_value: '%9.3f'
+    value_type: str
+  dro.degree-format:
+    default_value: '%9.2f'
+  backplot.show-grid:
+    default_value: false
+  backplot.show-program-bounds:
+    default_value: false
+  backplot.show-machine-bounds:
+    default_value: false
+  backplot.show-machine-labels:
+    default_value: false
+  backplot.show-machine-ticks:
+    default_value: false
+  backplot.perspective-view:
+    default_value: false
+  backplot.view:
+    default_value: P
+    options:
+    - 'X: Front View'
+    - 'XZ: Lathe View'
+    - 'XZ2: Lathe View'
+    - 'Y: Front View'
+    - 'Z: Top View'
+    - 'Z2: Bottom View'
+    - 'P: Isometric'
+  backplot.multitool-colors:
+    default_value: true
+  touch-probe.calibration-offset:
+    description: Probe trigger point offset.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1
+  probe-parameters.probe-tool-number:
+    description: probe tool number.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 9999
+  probe-parameters.step-off-width:
+    description: probe step off width.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  probe-parameters.probe-fast-fr:
+    description: probe fast feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  probe-parameters.probe-slow-fr:
+    description: probe slow feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  probe-parameters.max-xy-distance:
+    description: max x and y probe travel distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 100
+  probe-parameters.xy-clearance:
+    description: x and y clearance distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  probe-parameters.max-z-distance:
+    description: max z probe travel distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 100
+  probe-parameters.z-clearance:
+    description: z clearance distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  probe-parameters.extra-probe-depth:
+    description: extra probe depth.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 100
+  probe-parameters.edge-width:
+    description: edge width probing distance.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1000
+  tool-change-position.x-tool-change-position:
+    description: x axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-change-position.y-tool-change-position:
+    description: y axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-change-position.z-tool-change-position:
+    description: z axis tool change position.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.fast-probe-fr:
+    description: tool probe fast feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.slow-probe-fr:
+    description: tool probe slow feedrate.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.z-max-travel:
+    description: maximumm z travel while probing before erroring out.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.xy-max-travel:
+    description: maximumm xy travel while probing before erroring out.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.retract-distance:
+    description: distance tool retracts after fast probe move.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  tool-setter-probe.spindle-nose-height:
+    description: distance from home to tool setter for the spindle nose.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  programmable-coolant.active:
+    description: activates programmable coolant with 1 as entry.
+    default_value: 0.0
+    persistent: true
+    min_value: 0
+    max_value: 1
+  programmable-coolant.spindle-to-nozzle-dist:
+    description: horizontal distance from spindle centerline to nozzle centerline.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  programmable-coolant.gaugeline-to-nozzle-dist:
+    description: vertical distance from spindle centerline to nozzle centerline.
+    default_value: 0.0
+    persistent: true
+    min_value: -1000
+    max_value: 1000
+  programmable-coolant.pc-angle-offset:
+    description: coolant nozzle offset amount to adjust for distance, pressure, gravity.
+    default_value: 0.0
+    persistent: true
+    min_value: -45
+    max_value: 45
+  io1.card-name:
+    description: io card 1 name
+    default_value: card one name
+    persistent: true
+  io1.in1:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in2:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in3:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in4:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in5:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in6:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in7:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in8:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in9:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in10:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in11:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in12:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in13:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in14:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in15:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in16:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in17:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in18:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in19:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in20:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in21:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in22:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in23:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in24:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in25:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in26:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in27:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in28:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in29:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in30:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in31:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.in32:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out1:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out2:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out3:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out4:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out5:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out6:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out7:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out8:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out9:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out10:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out11:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out12:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out13:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out14:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out15:
+    description: input name
+    default_value: none
+    persistent: true
+  io1.out16:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.card-name:
+    description: io card 2 name
+    default_value: card two name
+    persistent: true
+  io2.in1:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in2:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in3:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in4:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in5:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in6:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in7:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in8:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in9:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in10:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in11:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in12:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in13:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in14:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in15:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in16:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in17:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in18:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in19:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in20:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in21:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in22:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in23:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in24:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in25:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in26:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in27:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in28:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in29:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in30:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in31:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.in32:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out1:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out2:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out3:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out4:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out5:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out6:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out7:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out8:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out9:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out10:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out11:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out12:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out13:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out14:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out15:
+    description: input name
+    default_value: none
+    persistent: true
+  io2.out16:
+    description: input name
+    default_value: none
+    persistent: true
+  backplot.show-program-labels:
+    default_value: false
+  backplot.show-program-ticks:
+    default_value: false
+menubar: *id001
+qtdesigner:
+  ui_file: /home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.ui
+  qss_file: /home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.qss
+
+
+2023-01-31 14:26:30,852 - qtpyvcp.utilities.info - INFO - The machine has 5 axes and 5 joints
+2023-01-31 14:26:30,852 - qtpyvcp.utilities.info - INFO - The Axis/Joint mapping is:
+2023-01-31 14:26:30,852 - qtpyvcp.utilities.info - INFO - Axis X --> Joint 0
+2023-01-31 14:26:30,853 - qtpyvcp.utilities.info - INFO - Axis Y --> Joint 1
+2023-01-31 14:26:30,853 - qtpyvcp.utilities.info - INFO - Axis Z --> Joint 2
+2023-01-31 14:26:30,853 - qtpyvcp.utilities.info - INFO - Axis A --> Joint 3
+2023-01-31 14:26:30,853 - qtpyvcp.utilities.info - INFO - Axis B --> Joint 4
+2023-01-31 14:26:30,853 - qtpyvcp.app.launcher - DEBUG - Time: 0.000 (+0.000) - in script
+2023-01-31 14:26:30,853 - qtpyvcp.app.launcher - DEBUG - Loading data plugings
+2023-01-31 14:26:30,853 - qtpyvcp.plugins - DEBUG - Loading plugin 'status' from 'qtpyvcp.plugins.status:Status'
+2023-01-31 14:26:30,855 - qtpyvcp.plugins.status - DEBUG - ---------set mdi_history: None, ['M03 S1000', 'm03 s1000', 'g1 y0. f15', 'g1 y-7. f15.', 'g1 y0. f15', 'g1 y-7.', 's1000', 'g1 y0. f15', 'g1 y-7.', 'g1 y0. f15', 'g1 y-7.', 'g1 y0. f15', 'g1 y-7.', 'g1 y0. f15', 'g1 y-7. f15.', 'm03', 's1300', 'g1 y-7. f15.', 'g1 y0. f15', 'g1 y-7.', 'g1 y0. f15', 'g1 y-7.', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0. f15', 'g1 x-.18', 'g1 y-7.', 'g1 x0.', 'g1 y0. f15', 'g1 x-.48', 's1300', 'g1 y-7.', 'g1 x0.', 'g1 y0. f10', 'g1 x-.18', 'g1 y-7.', 'g1 y0. f15', 'f10.', 'f20.', 'g1 y-7.', 'f20', 'g1 x-.48', 's1600', 'g1 y0. f15', 's1300', 'g1 x-.18', 'g1 y-7.', 'g1 y0. f15', 'g1 x0.', 'g1 y-7.', 'g1 x-.18', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0. f15', 'g1 x-.18', 'g1 y-7.', 'g1 y0. f15', 'g1 x0.', 'g1 y-7.', 'g1 x-.18', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0. f15', 'g1 x-.18', 'g1 y-7.', 'g1 y0. f15', 'g1 x0.', 'g1 y-7.', 'g1 x-.18', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0. f15', 'g1 x-.18', 'g1 y-7.', 'g1 y0. f15', 'g1 x0.', 'g1 y-7.', 'g1 x-.18', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0. f15', 'g1 x-.18', 'g1 y-7.', 'g1 x0.', 'g1 y0. f15', 'g1 y-7.', 'g1 x-.48', 'g1 y0.', 'g1 x-.18', 'g1 y-7.', 'g1 x0.', 'g1 y0.', 'g1 y0. f15', 'g1 x-.48', 'g1 y-7.']
+2023-01-31 14:26:30,860 - qtpyvcp.plugins - DEBUG - Loading plugin 'persistent_data_manager' from 'qtpyvcp.plugins.persistent_data_manager:PersistentDataManager'
+2023-01-31 14:26:30,860 - qtpyvcp.plugins - DEBUG - Loading plugin 'settings' from 'qtpyvcp.plugins.settings:Settings'
+2023-01-31 14:26:30,862 - qtpyvcp.plugins - DEBUG - Loading plugin 'position' from 'qtpyvcp.plugins.positions:Position'
+2023-01-31 14:26:30,862 - qtpyvcp.plugins - DEBUG - Loading plugin 'tooltable' from 'qtpyvcp.plugins.tool_table:ToolTable'
+2023-01-31 14:26:30,867 - qtpyvcp.plugins - DEBUG - Loading plugin 'offsettable' from 'qtpyvcp.plugins.offset_table:OffsetTable'
+2023-01-31 14:26:30,868 - qtpyvcp.plugins - DEBUG - Loading plugin 'notifications' from 'qtpyvcp.plugins.notifications:Notifications'
+2023-01-31 14:26:30,874 - qtpyvcp.plugins - DEBUG - Loading plugin 'file_locations' from 'qtpyvcp.plugins.file_locations:FileLocations'
+2023-01-31 14:26:30,900 - qtpyvcp.plugins - DEBUG - Loading plugin 'virtual_input' from 'qtpyvcp.plugins.virtual_input_manager:VirtualInputManager'
+2023-01-31 14:26:30,901 - qtpyvcp.app.launcher - DEBUG - Time: 0.048 (+0.048) - done loading data plugins
+2023-01-31 14:26:30,901 - qtpyvcp.app.launcher - DEBUG - Initializing app
+2023-01-31 14:26:30,970 - qtpyvcp.plugins - DEBUG - Initializing 'status' plugin
+2023-01-31 14:26:30,971 - qtpyvcp.plugins.status - DEBUG - Starting periodic updates with 75ms cycle time
+2023-01-31 14:26:30,971 - qtpyvcp.plugins - DEBUG - Initializing 'persistent_data_manager' plugin
+2023-01-31 14:26:30,971 - qtpyvcp.plugins - DEBUG - Initializing 'settings' plugin
+2023-01-31 14:26:30,971 - qtpyvcp.plugins - DEBUG - Initializing 'position' plugin
+2023-01-31 14:26:30,971 - qtpyvcp.plugins - DEBUG - Initializing 'tooltable' plugin
+2023-01-31 14:26:30,971 - qtpyvcp.plugins - DEBUG - Initializing 'offsettable' plugin
+2023-01-31 14:26:30,972 - qtpyvcp.plugins - DEBUG - Initializing 'notifications' plugin
+2023-01-31 14:26:30,973 - qtpyvcp.plugins - DEBUG - Initializing 'file_locations' plugin
+2023-01-31 14:26:30,990 - qtpyvcp.plugins - DEBUG - Initializing 'virtual_input' plugin
+2023-01-31 14:26:31,018 - qtpyvcp - INFO - Loading global stylesheet: /home/forgedauthority/dev/probe_basic/probe_basic/probe_basic.qss
+2023-01-31 14:26:31,023 - qtpyvcp - DEBUG - Loading custom font: /home/forgedauthority/dev/probe_basic/probe_basic/fonts/BebasKai.ttf
+2023-01-31 14:26:31,045 - qtpyvcp.app.launcher - DEBUG - Time: 0.192 (+0.144) - done initializing app
+2023-01-31 14:26:31,045 - qtpyvcp.app.launcher - DEBUG - Loading dialogs
+2023-01-31 14:26:31,421 - qtpyvcp.app.launcher - DEBUG - Time: 0.568 (+0.376) - done loading dialogs
+2023-01-31 14:26:31,422 - qtpyvcp.app.launcher - DEBUG - Loading windows
+2023-01-31 14:26:32,126 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------using refactored vtk code
+2023-01-31 14:26:32,127 - qtpyvcp.widgets.display_widgets.vtk_backplot.linuxcnc_datasource - DEBUG - self._status.stat.g5x_offset: <class 'tuple'>
+2023-01-31 14:26:32,127 - qtpyvcp.widgets.display_widgets.vtk_backplot.linuxcnc_datasource - DEBUG - -----current_wcs index: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2023-01-31 14:26:32,127 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_index 0
+2023-01-31 14:26:32,127 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_offset (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+2023-01-31 14:26:32,127 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_offsets {0: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 2: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 3: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 4: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 5: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 6: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 7: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 8: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+2023-01-31 14:26:32,139 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------translate1: (0.0, 0.0, 0.0)
+2023-01-31 14:26:32,140 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------active_wcs_offset: (0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+2023-01-31 14:26:32,172 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - show grid
+2023-01-31 14:26:32,192 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - Setting view to: P
+2023-01-31 14:26:33,592 - qtpyvcp.widgets.base_widgets.base_widget - ERROR - Error evaluating rule: status:axes
+Traceback (most recent call last):
+  File "/home/forgedauthority/dev/qtpyvcp/qtpyvcp/widgets/base_widgets/base_widget.py", line 176, in registerRules
+    triggers.append(chan_obj.notify)
+AttributeError: 'NoneType' object has no attribute 'notify'
+2023-01-31 14:26:33,868 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'status' plugin
+2023-01-31 14:26:33,868 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'persistent_data_manager' plugin
+2023-01-31 14:26:33,868 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'settings' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'position' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'tooltable' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'offsettable' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'notifications' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'file_locations' plugin
+2023-01-31 14:26:33,869 - qtpyvcp.plugins - DEBUG - Post GUI Initializing 'virtual_input' plugin
+2023-01-31 14:26:34,062 - qtpyvcp.app.launcher - DEBUG - Time: 3.209 (+2.640) - done loading windows
+2023-01-31 14:26:34,062 - qtpyvcp.app.launcher - DEBUG - Initializing widgets
+2023-01-31 14:26:34,071 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,071 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in4.on (bit in)
+2023-01-31 14:26:34,071 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in4.flash (bit in)
+2023-01-31 14:26:34,071 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in4.flash-rate (u32 in)
+2023-01-31 14:26:34,072 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,072 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out1.on (bit in)
+2023-01-31 14:26:34,072 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out1.flash (bit in)
+2023-01-31 14:26:34,072 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out1.flash-rate (u32 in)
+2023-01-31 14:26:34,073 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,073 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out10.on (bit in)
+2023-01-31 14:26:34,073 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out10.flash (bit in)
+2023-01-31 14:26:34,073 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out10.flash-rate (u32 in)
+2023-01-31 14:26:34,073 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,078 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.in-f (float in)
+2023-01-31 14:26:34,080 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.in-i (u32 in)
+2023-01-31 14:26:34,080 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.min-val (float in)
+2023-01-31 14:26:34,081 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-load-indicator.max-val (float in)
+2023-01-31 14:26:34,081 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,081 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in22.on (bit in)
+2023-01-31 14:26:34,081 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in22.flash (bit in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in22.flash-rate (u32 in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in6.on (bit in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in6.flash (bit in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in6.flash-rate (u32 in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in2.on (bit in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in2.flash (bit in)
+2023-01-31 14:26:34,082 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in2.flash-rate (u32 in)
+2023-01-31 14:26:34,083 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,083 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in30.on (bit in)
+2023-01-31 14:26:34,083 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in30.flash (bit in)
+2023-01-31 14:26:34,083 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in30.flash-rate (u32 in)
+2023-01-31 14:26:34,083 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,083 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in7.on (bit in)
+2023-01-31 14:26:34,084 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in7.flash (bit in)
+2023-01-31 14:26:34,084 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in7.flash-rate (u32 in)
+2023-01-31 14:26:34,084 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,085 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in10.on (bit in)
+2023-01-31 14:26:34,085 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in10.flash (bit in)
+2023-01-31 14:26:34,085 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in10.flash-rate (u32 in)
+2023-01-31 14:26:34,085 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,085 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in31.on (bit in)
+2023-01-31 14:26:34,085 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in31.flash (bit in)
+2023-01-31 14:26:34,086 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in31.flash-rate (u32 in)
+2023-01-31 14:26:34,086 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,086 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in30.on (bit in)
+2023-01-31 14:26:34,086 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in30.flash (bit in)
+2023-01-31 14:26:34,086 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in30.flash-rate (u32 in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in21.on (bit in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in21.flash (bit in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in21.flash-rate (u32 in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out3.on (bit in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out3.flash (bit in)
+2023-01-31 14:26:34,087 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out3.flash-rate (u32 in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out6.on (bit in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out6.flash (bit in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out6.flash-rate (u32 in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in3.on (bit in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in3.flash (bit in)
+2023-01-31 14:26:34,088 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in3.flash-rate (u32 in)
+2023-01-31 14:26:34,089 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,089 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out4.on (bit in)
+2023-01-31 14:26:34,090 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out4.flash (bit in)
+2023-01-31 14:26:34,090 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out4.flash-rate (u32 in)
+2023-01-31 14:26:34,090 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,090 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in12.on (bit in)
+2023-01-31 14:26:34,090 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in12.flash (bit in)
+2023-01-31 14:26:34,091 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in12.flash-rate (u32 in)
+2023-01-31 14:26:34,091 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,091 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in23.on (bit in)
+2023-01-31 14:26:34,091 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in23.flash (bit in)
+2023-01-31 14:26:34,091 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in23.flash-rate (u32 in)
+2023-01-31 14:26:34,092 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,092 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in27.on (bit in)
+2023-01-31 14:26:34,092 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in27.flash (bit in)
+2023-01-31 14:26:34,092 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in27.flash-rate (u32 in)
+2023-01-31 14:26:34,092 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,092 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in9.on (bit in)
+2023-01-31 14:26:34,093 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in9.flash (bit in)
+2023-01-31 14:26:34,093 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in9.flash-rate (u32 in)
+2023-01-31 14:26:34,093 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,093 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out14.on (bit in)
+2023-01-31 14:26:34,093 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out14.flash (bit in)
+2023-01-31 14:26:34,093 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out14.flash-rate (u32 in)
+2023-01-31 14:26:34,094 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,094 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in17.on (bit in)
+2023-01-31 14:26:34,094 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in17.flash (bit in)
+2023-01-31 14:26:34,094 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in17.flash-rate (u32 in)
+2023-01-31 14:26:34,094 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out13.on (bit in)
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out13.flash (bit in)
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out13.flash-rate (u32 in)
+2023-01-31 14:26:34,095 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in16.on (bit in)
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in16.flash (bit in)
+2023-01-31 14:26:34,095 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in16.flash-rate (u32 in)
+2023-01-31 14:26:34,096 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,096 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in31.on (bit in)
+2023-01-31 14:26:34,096 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in31.flash (bit in)
+2023-01-31 14:26:34,096 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in31.flash-rate (u32 in)
+2023-01-31 14:26:34,097 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,097 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in28.on (bit in)
+2023-01-31 14:26:34,097 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in28.flash (bit in)
+2023-01-31 14:26:34,097 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in28.flash-rate (u32 in)
+2023-01-31 14:26:34,098 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,098 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in12.on (bit in)
+2023-01-31 14:26:34,098 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in12.flash (bit in)
+2023-01-31 14:26:34,098 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in12.flash-rate (u32 in)
+2023-01-31 14:26:34,098 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out16.on (bit in)
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out16.flash (bit in)
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out16.flash-rate (u32 in)
+2023-01-31 14:26:34,099 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out2.on (bit in)
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out2.flash (bit in)
+2023-01-31 14:26:34,099 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out2.flash-rate (u32 in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in7.on (bit in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in7.flash (bit in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in7.flash-rate (u32 in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in27.on (bit in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in27.flash (bit in)
+2023-01-31 14:26:34,100 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in27.flash-rate (u32 in)
+2023-01-31 14:26:34,101 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,101 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out15.on (bit in)
+2023-01-31 14:26:34,101 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out15.flash (bit in)
+2023-01-31 14:26:34,101 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out15.flash-rate (u32 in)
+2023-01-31 14:26:34,101 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,102 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out6.on (bit in)
+2023-01-31 14:26:34,102 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out6.flash (bit in)
+2023-01-31 14:26:34,102 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out6.flash-rate (u32 in)
+2023-01-31 14:26:34,103 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,103 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in18.on (bit in)
+2023-01-31 14:26:34,103 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in18.flash (bit in)
+2023-01-31 14:26:34,103 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in18.flash-rate (u32 in)
+2023-01-31 14:26:34,103 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,103 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out8.on (bit in)
+2023-01-31 14:26:34,104 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out8.flash (bit in)
+2023-01-31 14:26:34,104 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out8.flash-rate (u32 in)
+2023-01-31 14:26:34,104 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,104 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in14.on (bit in)
+2023-01-31 14:26:34,104 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in14.flash (bit in)
+2023-01-31 14:26:34,104 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in14.flash-rate (u32 in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out7.on (bit in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out7.flash (bit in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out7.flash-rate (u32 in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in8.on (bit in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in8.flash (bit in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in8.flash-rate (u32 in)
+2023-01-31 14:26:34,105 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,106 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out7.on (bit in)
+2023-01-31 14:26:34,106 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out7.flash (bit in)
+2023-01-31 14:26:34,106 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out7.flash-rate (u32 in)
+2023-01-31 14:26:34,106 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,107 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in9.on (bit in)
+2023-01-31 14:26:34,107 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in9.flash (bit in)
+2023-01-31 14:26:34,107 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in9.flash-rate (u32 in)
+2023-01-31 14:26:34,108 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,108 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in24.on (bit in)
+2023-01-31 14:26:34,108 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in24.flash (bit in)
+2023-01-31 14:26:34,108 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in24.flash-rate (u32 in)
+2023-01-31 14:26:34,108 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,108 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out10.on (bit in)
+2023-01-31 14:26:34,109 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out10.flash (bit in)
+2023-01-31 14:26:34,109 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out10.flash-rate (u32 in)
+2023-01-31 14:26:34,109 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,109 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in1.on (bit in)
+2023-01-31 14:26:34,109 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in1.flash (bit in)
+2023-01-31 14:26:34,109 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in1.flash-rate (u32 in)
+2023-01-31 14:26:34,110 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,110 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in13.on (bit in)
+2023-01-31 14:26:34,110 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in13.flash (bit in)
+2023-01-31 14:26:34,110 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in13.flash-rate (u32 in)
+2023-01-31 14:26:34,110 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,111 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out9.on (bit in)
+2023-01-31 14:26:34,111 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out9.flash (bit in)
+2023-01-31 14:26:34,111 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out9.flash-rate (u32 in)
+2023-01-31 14:26:34,111 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,111 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out2.on (bit in)
+2023-01-31 14:26:34,112 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out2.flash (bit in)
+2023-01-31 14:26:34,112 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out2.flash-rate (u32 in)
+2023-01-31 14:26:34,112 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,112 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out11.on (bit in)
+2023-01-31 14:26:34,112 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out11.flash (bit in)
+2023-01-31 14:26:34,112 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out11.flash-rate (u32 in)
+2023-01-31 14:26:34,113 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,113 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in20.on (bit in)
+2023-01-31 14:26:34,113 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in20.flash (bit in)
+2023-01-31 14:26:34,113 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in20.flash-rate (u32 in)
+2023-01-31 14:26:34,113 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,113 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in22.on (bit in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in22.flash (bit in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in22.flash-rate (u32 in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,114 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out8.on (bit in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out8.flash (bit in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out8.flash-rate (u32 in)
+2023-01-31 14:26:34,114 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in19.on (bit in)
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in19.flash (bit in)
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in19.flash-rate (u32 in)
+2023-01-31 14:26:34,115 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out13.on (bit in)
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out13.flash (bit in)
+2023-01-31 14:26:34,115 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out13.flash-rate (u32 in)
+2023-01-31 14:26:34,116 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,116 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerhours.enable (bit in)
+2023-01-31 14:26:34,116 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerhours.in (u32 in)
+2023-01-31 14:26:34,116 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,116 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out14.on (bit in)
+2023-01-31 14:26:34,116 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out14.flash (bit in)
+2023-01-31 14:26:34,116 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out14.flash-rate (u32 in)
+2023-01-31 14:26:34,117 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,117 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in14.on (bit in)
+2023-01-31 14:26:34,117 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in14.flash (bit in)
+2023-01-31 14:26:34,117 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in14.flash-rate (u32 in)
+2023-01-31 14:26:34,117 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,117 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in26.on (bit in)
+2023-01-31 14:26:34,118 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in26.flash (bit in)
+2023-01-31 14:26:34,118 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in26.flash-rate (u32 in)
+2023-01-31 14:26:34,119 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,119 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in18.on (bit in)
+2023-01-31 14:26:34,119 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in18.flash (bit in)
+2023-01-31 14:26:34,119 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in18.flash-rate (u32 in)
+2023-01-31 14:26:34,119 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,119 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in13.on (bit in)
+2023-01-31 14:26:34,119 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in13.flash (bit in)
+2023-01-31 14:26:34,120 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in13.flash-rate (u32 in)
+2023-01-31 14:26:34,120 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,120 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in17.on (bit in)
+2023-01-31 14:26:34,120 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in17.flash (bit in)
+2023-01-31 14:26:34,120 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in17.flash-rate (u32 in)
+2023-01-31 14:26:34,121 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,121 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in29.on (bit in)
+2023-01-31 14:26:34,121 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in29.flash (bit in)
+2023-01-31 14:26:34,121 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in29.flash-rate (u32 in)
+2023-01-31 14:26:34,121 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,121 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in28.on (bit in)
+2023-01-31 14:26:34,121 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in28.flash (bit in)
+2023-01-31 14:26:34,122 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in28.flash-rate (u32 in)
+2023-01-31 14:26:34,122 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,122 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in11.on (bit in)
+2023-01-31 14:26:34,122 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in11.flash (bit in)
+2023-01-31 14:26:34,122 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in11.flash-rate (u32 in)
+2023-01-31 14:26:34,123 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,123 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in1.on (bit in)
+2023-01-31 14:26:34,123 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in1.flash (bit in)
+2023-01-31 14:26:34,123 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in1.flash-rate (u32 in)
+2023-01-31 14:26:34,123 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,123 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in21.on (bit in)
+2023-01-31 14:26:34,123 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in21.flash (bit in)
+2023-01-31 14:26:34,124 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in21.flash-rate (u32 in)
+2023-01-31 14:26:34,124 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in25.on (bit in)
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in25.flash (bit in)
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in25.flash-rate (u32 in)
+2023-01-31 14:26:34,125 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in2.on (bit in)
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in2.flash (bit in)
+2023-01-31 14:26:34,125 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in2.flash-rate (u32 in)
+2023-01-31 14:26:34,233 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,234 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out11.on (bit in)
+2023-01-31 14:26:34,234 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out11.flash (bit in)
+2023-01-31 14:26:34,234 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out11.flash-rate (u32 in)
+2023-01-31 14:26:34,234 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,234 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in10.on (bit in)
+2023-01-31 14:26:34,234 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in10.flash (bit in)
+2023-01-31 14:26:34,235 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in10.flash-rate (u32 in)
+2023-01-31 14:26:34,235 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,235 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in8.on (bit in)
+2023-01-31 14:26:34,235 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in8.flash (bit in)
+2023-01-31 14:26:34,235 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in8.flash-rate (u32 in)
+2023-01-31 14:26:34,236 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,236 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in15.on (bit in)
+2023-01-31 14:26:34,236 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in15.flash (bit in)
+2023-01-31 14:26:34,236 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in15.flash-rate (u32 in)
+2023-01-31 14:26:34,237 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,237 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out15.on (bit in)
+2023-01-31 14:26:34,237 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out15.flash (bit in)
+2023-01-31 14:26:34,237 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out15.flash-rate (u32 in)
+2023-01-31 14:26:34,237 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,238 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out5.on (bit in)
+2023-01-31 14:26:34,238 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out5.flash (bit in)
+2023-01-31 14:26:34,238 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out5.flash-rate (u32 in)
+2023-01-31 14:26:34,238 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,238 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in29.on (bit in)
+2023-01-31 14:26:34,238 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in29.flash (bit in)
+2023-01-31 14:26:34,239 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in29.flash-rate (u32 in)
+2023-01-31 14:26:34,239 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,239 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out9.on (bit in)
+2023-01-31 14:26:34,239 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out9.flash (bit in)
+2023-01-31 14:26:34,239 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out9.flash-rate (u32 in)
+2023-01-31 14:26:34,239 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,239 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in24.on (bit in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in24.flash (bit in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in24.flash-rate (u32 in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in26.on (bit in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in26.flash (bit in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in26.flash-rate (u32 in)
+2023-01-31 14:26:34,240 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,240 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out1.on (bit in)
+2023-01-31 14:26:34,241 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out1.flash (bit in)
+2023-01-31 14:26:34,241 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out1.flash-rate (u32 in)
+2023-01-31 14:26:34,241 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,241 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in32.on (bit in)
+2023-01-31 14:26:34,241 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in32.flash (bit in)
+2023-01-31 14:26:34,241 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in32.flash-rate (u32 in)
+2023-01-31 14:26:34,242 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,242 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in4.on (bit in)
+2023-01-31 14:26:34,242 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in4.flash (bit in)
+2023-01-31 14:26:34,242 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in4.flash-rate (u32 in)
+2023-01-31 14:26:34,243 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,243 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in11.on (bit in)
+2023-01-31 14:26:34,243 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in11.flash (bit in)
+2023-01-31 14:26:34,243 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in11.flash-rate (u32 in)
+2023-01-31 14:26:34,243 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,243 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in5.on (bit in)
+2023-01-31 14:26:34,244 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in5.flash (bit in)
+2023-01-31 14:26:34,244 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in5.flash-rate (u32 in)
+2023-01-31 14:26:34,244 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,244 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in15.on (bit in)
+2023-01-31 14:26:34,244 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in15.flash (bit in)
+2023-01-31 14:26:34,244 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in15.flash-rate (u32 in)
+2023-01-31 14:26:34,245 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,245 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerminutes.enable (bit in)
+2023-01-31 14:26:34,245 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerminutes.in (u32 in)
+2023-01-31 14:26:34,246 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,246 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in16.on (bit in)
+2023-01-31 14:26:34,246 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in16.flash (bit in)
+2023-01-31 14:26:34,246 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in16.flash-rate (u32 in)
+2023-01-31 14:26:34,246 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,246 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out4.on (bit in)
+2023-01-31 14:26:34,247 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out4.flash (bit in)
+2023-01-31 14:26:34,247 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out4.flash-rate (u32 in)
+2023-01-31 14:26:34,247 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,247 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in32.on (bit in)
+2023-01-31 14:26:34,247 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in32.flash (bit in)
+2023-01-31 14:26:34,247 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in32.flash-rate (u32 in)
+2023-01-31 14:26:34,248 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,248 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out16.on (bit in)
+2023-01-31 14:26:34,248 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out16.flash (bit in)
+2023-01-31 14:26:34,249 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out16.flash-rate (u32 in)
+2023-01-31 14:26:34,249 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,249 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.enable (bit in)
+2023-01-31 14:26:34,249 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.out (bit out)
+2023-01-31 14:26:34,250 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-in.io (bit io)
+2023-01-31 14:26:34,250 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,250 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.on (bit in)
+2023-01-31 14:26:34,250 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.flash (bit in)
+2023-01-31 14:26:34,250 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.probe-led.flash-rate (u32 in)
+2023-01-31 14:26:34,251 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,251 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out12.on (bit in)
+2023-01-31 14:26:34,251 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out12.flash (bit in)
+2023-01-31 14:26:34,251 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out12.flash-rate (u32 in)
+2023-01-31 14:26:34,251 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,252 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in23.on (bit in)
+2023-01-31 14:26:34,252 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in23.flash (bit in)
+2023-01-31 14:26:34,252 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in23.flash-rate (u32 in)
+2023-01-31 14:26:34,252 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out3.on (bit in)
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out3.flash (bit in)
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out3.flash-rate (u32 in)
+2023-01-31 14:26:34,253 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in3.on (bit in)
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in3.flash (bit in)
+2023-01-31 14:26:34,253 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in3.flash-rate (u32 in)
+2023-01-31 14:26:34,254 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,254 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in19.on (bit in)
+2023-01-31 14:26:34,254 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in19.flash (bit in)
+2023-01-31 14:26:34,254 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in19.flash-rate (u32 in)
+2023-01-31 14:26:34,254 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,254 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in20.on (bit in)
+2023-01-31 14:26:34,254 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in20.flash (bit in)
+2023-01-31 14:26:34,255 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1in20.flash-rate (u32 in)
+2023-01-31 14:26:34,255 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,255 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerseconds.enable (bit in)
+2023-01-31 14:26:34,255 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.timerseconds.in (u32 in)
+2023-01-31 14:26:34,255 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,255 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out5.on (bit in)
+2023-01-31 14:26:34,256 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out5.flash (bit in)
+2023-01-31 14:26:34,256 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.1out5.flash-rate (u32 in)
+2023-01-31 14:26:34,257 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,257 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out12.on (bit in)
+2023-01-31 14:26:34,257 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out12.flash (bit in)
+2023-01-31 14:26:34,257 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2out12.flash-rate (u32 in)
+2023-01-31 14:26:34,259 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,259 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-encoder-rpm.enable (bit in)
+2023-01-31 14:26:34,260 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.spindle-encoder-rpm.in (float in)
+2023-01-31 14:26:34,260 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,260 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in25.on (bit in)
+2023-01-31 14:26:34,260 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in25.flash (bit in)
+2023-01-31 14:26:34,260 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in25.flash-rate (u32 in)
+2023-01-31 14:26:34,260 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,260 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in6.on (bit in)
+2023-01-31 14:26:34,261 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in6.flash (bit in)
+2023-01-31 14:26:34,261 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in6.flash-rate (u32 in)
+2023-01-31 14:26:34,261 - qtpyvcp.hal - DEBUG - Using existing HAL component: qtpyvcp
+2023-01-31 14:26:34,261 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in5.on (bit in)
+2023-01-31 14:26:34,261 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in5.flash (bit in)
+2023-01-31 14:26:34,261 - qtpyvcp.hal.hal_qlib - DEBUG - Adding HAL pin: qtpyvcp.2in5.flash-rate (u32 in)
+2023-01-31 14:26:34,263 - qtpyvcp.app.launcher - DEBUG - Time: 3.410 (+0.201) - done initializing widgets
+2023-01-31 14:26:34,263 - qtpyvcp.app.launcher - INFO - Loading POSTGUI_HALFILE: /home/forgedauthority/linuxcnc/configs/probe_basic/hallib/probe_basic_postgui.hal
+2023-01-31 14:26:34,404 - qtpyvcp.actions.program_actions - DEBUG - Loading NC program: /home/forgedauthority/linuxcnc/nc_files/pb_examples/blank.ngc
+2023-01-31 14:26:34,681 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/forgedauthority/linuxcnc/configs/probe_basic/sim.var
+2023-01-31 14:26:34,684 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2023-01-31 14:26:34,686 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------load_program
+2023-01-31 14:26:34,691 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------received wcs change: 0
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: feed mode set to units per minute
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: cutter radius compensation off
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: continuing to use same coordinate system
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: retract mode set to old_z
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: interpreter: motion mode set to none
+2023-01-31 14:26:34,698 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - G-code Comment: New Program
+2023-01-31 14:26:34,699 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------received wcs change: 0
+2023-01-31 14:26:34,699 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------Load time 0.01318359375 seconds ---
+2023-01-31 14:26:34,699 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------path points size: 392
+2023-01-31 14:26:34,699 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_canon - DEBUG - ---------path points length: 1
+2023-01-31 14:26:34,700 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - -------Draw time 0.013853311538696289 seconds ---
+2023-01-31 14:26:34,700 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_offsets: {0: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 2: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 3: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 4: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 5: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 6: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 7: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 8: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+2023-01-31 14:26:34,700 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------wcs_index: 0
+2023-01-31 14:26:34,700 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------current_offsets: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2023-01-31 14:26:34,700 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - ---------current_position: 0.0
+2023-01-31 14:26:34,716 - qtpyvcp.widgets.input_widgets.gcode_text_edit - INFO - File encoding: ascii
+2023-01-31 14:26:34,799 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-01-31 14:26:38,515 - qtpyvcp.actions.machine_actions - DEBUG - Setting state ESTOP_RESET
+2023-01-31 14:26:38,646 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/forgedauthority/linuxcnc/configs/probe_basic/sim.var
+2023-01-31 14:26:38,648 - qtpyvcp.plugins.status - DEBUG - Spindle_0 direction: 0
+2023-01-31 14:26:38,648 - qtpyvcp.plugins.status - DEBUG - Spindle_0 brake: 1
+2023-01-31 14:26:38,697 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-01-31 14:26:38,733 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/forgedauthority/linuxcnc/configs/probe_basic/sim.var
+2023-01-31 14:26:38,783 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-01-31 14:26:39,256 - qtpyvcp.actions.machine_actions - DEBUG - Setting state ON
+2023-01-31 14:26:39,298 - qtpyvcp.plugins.status - DEBUG - JOINT_0 enabled: 1
+2023-01-31 14:26:39,298 - qtpyvcp.plugins.status - DEBUG - JOINT_1 enabled: 1
+2023-01-31 14:26:39,298 - qtpyvcp.plugins.status - DEBUG - JOINT_2 enabled: 1
+2023-01-31 14:26:39,299 - qtpyvcp.plugins.status - DEBUG - JOINT_3 enabled: 1
+2023-01-31 14:26:39,299 - qtpyvcp.plugins.status - DEBUG - JOINT_4 enabled: 1
+2023-01-31 14:26:44,259 - qtpyvcp.plugins.offset_table - DEBUG - Params file changed: /home/forgedauthority/linuxcnc/configs/probe_basic/sim.var
+2023-01-31 14:26:44,310 - qtpyvcp.widgets.display_widgets.vtk_backplot.vtk_backplot - DEBUG - on_offset_table_changed
+2023-01-31 14:26:45,054 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.02256333333333334
+2023-01-31 14:26:45,054 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 8.673617379884035e-19
+2023-01-31 14:26:45,054 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.023523333333333344
+2023-01-31 14:26:45,054 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.9700000000000003
+2023-01-31 14:26:45,120 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.1380633333333334
+2023-01-31 14:26:45,120 - qtpyvcp.plugins.status - DEBUG - JOINT_0 ferror_highmark: 1.3877787807814457e-17
+2023-01-31 14:26:45,120 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.1404233333333334
+2023-01-31 14:26:45,120 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.369999999999997
+2023-01-31 14:26:45,195 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.3553233333333336
+2023-01-31 14:26:45,195 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 3.7900000000000156
+2023-01-31 14:26:45,195 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.3591033333333336
+2023-01-31 14:26:45,269 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 0.7263033333333327
+2023-01-31 14:26:45,270 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 0.7209233333333329
+2023-01-31 14:26:45,270 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 5.38999999999995
+2023-01-31 14:26:45,346 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 1.1526033333333299
+2023-01-31 14:26:45,346 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 1.1594033333333298
+2023-01-31 14:26:45,346 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 6.809999999999983
+2023-01-31 14:26:45,420 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 1.768203333333324
+2023-01-31 14:26:45,420 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 1.7598033333333243
+2023-01-31 14:26:45,420 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 8.409999999999917
+2023-01-31 14:26:45,495 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 2.4157233333333163
+2023-01-31 14:26:45,495 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.830000000000005
+2023-01-31 14:26:45,495 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 2.4059033333333164
+2023-01-31 14:26:45,570 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 9.630000000000027
+2023-01-31 14:26:45,570 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.201936666666637
+2023-01-31 14:26:45,570 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.2115766666666374
+2023-01-31 14:26:45,645 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 3.8366766666666394
+2023-01-31 14:26:45,645 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 8.21000000000005
+2023-01-31 14:26:45,645 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 3.844896666666639
+2023-01-31 14:26:45,719 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 4.4376966666666435
+2023-01-31 14:26:45,719 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 4.431076666666645
+2023-01-31 14:26:45,719 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 6.609999999999783
+2023-01-31 14:26:45,797 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 4.856596666666651
+2023-01-31 14:26:45,797 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 5.19000000000025
+2023-01-31 14:26:45,797 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 4.851396666666651
+2023-01-31 14:26:45,869 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.170896666666659
+2023-01-31 14:26:45,869 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 3.78999999999996
+2023-01-31 14:26:45,869 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.16709666666666
+2023-01-31 14:26:45,945 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.410096666666669
+2023-01-31 14:26:45,945 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.41227666666667
+2023-01-31 14:26:45,945 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 2.1700000000000053
+2023-01-31 14:26:46,019 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.514396666666678
+2023-01-31 14:26:46,020 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.515176666666679
+2023-01-31 14:26:46,020 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.7700000000001594
+2023-01-31 14:26:46,094 - qtpyvcp.plugins.status - DEBUG - JOINT_0 output: 5.530000000000016
+2023-01-31 14:26:46,094 - qtpyvcp.plugins.status - DEBUG - JOINT_0 velocity: 0.0
+2023-01-31 14:26:46,094 - qtpyvcp.plugins.status - DEBUG - JOINT_0 input: 5.530000000000016
+2023-01-31 14:26:46,640 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.16999999999999996
+2023-01-31 14:26:46,641 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.0005633333333333333
+2023-01-31 14:26:46,641 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_highmark: 5.421010862427522e-20
+2023-01-31 14:26:46,641 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.0007233333333333333
+2023-01-31 14:26:46,695 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 1.3699999999999997
+2023-01-31 14:26:46,695 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.046923333333333365
+2023-01-31 14:26:46,695 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_highmark: 8.673617379884035e-19
+2023-01-31 14:26:46,695 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.045563333333333365
+2023-01-31 14:26:46,769 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 2.790000000000001
+2023-01-31 14:26:46,770 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.19460333333333346
+2023-01-31 14:26:46,770 - qtpyvcp.plugins.status - DEBUG - JOINT_1 ferror_highmark: 1.3877787807814457e-17
+2023-01-31 14:26:46,770 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.19182333333333346
+2023-01-31 14:26:46,846 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.4774233333333336
+2023-01-31 14:26:46,846 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.4818033333333336
+2023-01-31 14:26:46,846 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 4.390000000000005
+2023-01-31 14:26:46,919 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 0.8439033333333321
+2023-01-31 14:26:46,919 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 5.809999999999926
+2023-01-31 14:26:46,919 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 0.8381033333333323
+2023-01-31 14:26:46,995 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 1.2924033333333287
+2023-01-31 14:26:46,995 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 1.2996033333333286
+2023-01-31 14:26:46,995 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 7.209999999999939
+2023-01-31 14:26:47,069 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 1.949223333333322
+2023-01-31 14:26:47,069 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 8.829999999999893
+2023-01-31 14:26:47,070 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 1.940403333333322
+2023-01-31 14:26:47,146 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 2.6149999999999793
+2023-01-31 14:26:47,146 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 9.999999999999787
+2023-01-31 14:26:47,146 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 2.6049999999999796
+2023-01-31 14:26:47,220 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 3.424999999999962
+2023-01-31 14:26:47,220 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 3.4149999999999623
+2023-01-31 14:26:47,295 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 4.092436666666625
+2023-01-31 14:26:47,295 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 4.101476666666624
+2023-01-31 14:26:47,295 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 9.02999999999965
+2023-01-31 14:26:47,370 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 4.759876666666627
+2023-01-31 14:26:47,370 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 4.767296666666627
+2023-01-31 14:26:47,370 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 7.409999999999695
+2023-01-31 14:26:47,445 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 5.230976666666632
+2023-01-31 14:26:47,445 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 6.010000000000293
+2023-01-31 14:26:47,445 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 5.236996666666633
+2023-01-31 14:26:47,519 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 5.604076666666639
+2023-01-31 14:26:47,520 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 4.610000000000003
+2023-01-31 14:26:47,520 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 5.608696666666639
+2023-01-31 14:26:47,594 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 5.91649666666665
+2023-01-31 14:26:47,594 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 2.990000000000048
+2023-01-31 14:26:47,595 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 5.913496666666649
+2023-01-31 14:26:47,671 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 6.076796666666659
+2023-01-31 14:26:47,671 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 6.075196666666659
+2023-01-31 14:26:47,671 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 1.5899999999997583
+2023-01-31 14:26:47,746 - qtpyvcp.plugins.status - DEBUG - JOINT_1 input: 6.1400000000000015
+2023-01-31 14:26:47,746 - qtpyvcp.plugins.status - DEBUG - JOINT_1 output: 6.1400000000000015
+2023-01-31 14:26:47,746 - qtpyvcp.plugins.status - DEBUG - JOINT_1 velocity: 0.0
+2023-01-31 14:26:58,744 - qtpyvcp.actions.machine_actions - INFO - Homing all axes
+2023-01-31 14:26:58,812 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 1
+2023-01-31 14:26:58,813 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 1
+2023-01-31 14:26:58,813 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 1
+2023-01-31 14:26:58,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:26:58,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.004199999999999999
+2023-01-31 14:26:58,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 8.673617379884035e-19
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.4200000000000001
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 8.673617379884035e-19
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.00462
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 1.0
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.02000000000000001
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.02100000000000001
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 1.734723475976807e-18
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 1.0
+2023-01-31 14:26:58,921 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-01-31 14:26:58,922 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.02000000000000001
+2023-01-31 14:26:58,922 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.02100000000000001
+2023-01-31 14:26:58,922 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 1.734723475976807e-18
+2023-01-31 14:26:58,994 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 1.0
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.06550000000000004
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 3.469446951953614e-18
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.06650000000000005
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.09000000000000007
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 6.938893903907228e-18
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.09100000000000007
+2023-01-31 14:26:58,995 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.09000000000000007
+2023-01-31 14:26:58,996 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 6.938893903907228e-18
+2023-01-31 14:26:58,996 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.09100000000000007
+2023-01-31 14:26:59,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 1.3877787807814457e-17
+2023-01-31 14:26:59,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.1475000000000001
+2023-01-31 14:26:59,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.1465000000000001
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.17100000000000012
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 1.3877787807814457e-17
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.17200000000000013
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.17100000000000012
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 1.3877787807814457e-17
+2023-01-31 14:26:59,071 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.17200000000000013
+2023-01-31 14:26:59,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.21750000000000017
+2023-01-31 14:26:59,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.21650000000000016
+2023-01-31 14:26:59,146 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.2410000000000002
+2023-01-31 14:26:59,146 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.2420000000000002
+2023-01-31 14:26:59,147 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.2410000000000002
+2023-01-31 14:26:59,147 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.2420000000000002
+2023-01-31 14:26:59,219 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 2.7755575615628914e-17
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.2975000000000002
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.2985000000000002
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.32300000000000023
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 2.7755575615628914e-17
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.32200000000000023
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.32300000000000023
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 2.7755575615628914e-17
+2023-01-31 14:26:59,220 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.32200000000000023
+2023-01-31 14:26:59,295 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.36850000000000027
+2023-01-31 14:26:59,295 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.36750000000000027
+2023-01-31 14:26:59,296 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.3920000000000003
+2023-01-31 14:26:59,296 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.3930000000000003
+2023-01-31 14:26:59,296 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.3920000000000003
+2023-01-31 14:26:59,296 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.3930000000000003
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.43850000000000033
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.43950000000000033
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.46400000000000036
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.46300000000000036
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.46400000000000036
+2023-01-31 14:26:59,370 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.46300000000000036
+2023-01-31 14:26:59,445 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.5195000000000004
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.5185000000000004
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 5.551115123125783e-17
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.5440000000000004
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.5430000000000004
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.5440000000000004
+2023-01-31 14:26:59,446 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.5430000000000004
+2023-01-31 14:26:59,520 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.5895000000000005
+2023-01-31 14:26:59,520 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.5885000000000005
+2023-01-31 14:26:59,521 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.6140000000000004
+2023-01-31 14:26:59,521 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.6130000000000004
+2023-01-31 14:26:59,521 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.6140000000000004
+2023-01-31 14:26:59,521 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.6130000000000004
+2023-01-31 14:26:59,595 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.6695000000000005
+2023-01-31 14:26:59,595 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.6705000000000005
+2023-01-31 14:26:59,595 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.6950000000000005
+2023-01-31 14:26:59,596 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.6940000000000005
+2023-01-31 14:26:59,596 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.6950000000000005
+2023-01-31 14:26:59,596 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.6940000000000005
+2023-01-31 14:26:59,669 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7415000000000006
+2023-01-31 14:26:59,669 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7405000000000006
+2023-01-31 14:26:59,670 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.7660000000000006
+2023-01-31 14:26:59,670 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.7650000000000006
+2023-01-31 14:26:59,670 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.7660000000000006
+2023-01-31 14:26:59,670 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.7650000000000006
+2023-01-31 14:26:59,746 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8215000000000007
+2023-01-31 14:26:59,746 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8205000000000007
+2023-01-31 14:26:59,747 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.8450000000000006
+2023-01-31 14:26:59,747 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.8460000000000006
+2023-01-31 14:26:59,747 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.8450000000000006
+2023-01-31 14:26:59,747 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.8460000000000006
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8925000000000007
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8915000000000007
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9170000000000007
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9160000000000007
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9170000000000007
+2023-01-31 14:26:59,820 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9160000000000007
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9715000000000008
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9725000000000008
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9970000000000008
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9960000000000008
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9970000000000008
+2023-01-31 14:26:59,895 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9960000000000008
+2023-01-31 14:26:59,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0424999999999962
+2023-01-31 14:26:59,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 1.1102230246251565e-16
+2023-01-31 14:26:59,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.043499999999996
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 1.1102230246251565e-16
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.0669999999999933
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.0679999999999932
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 1.1102230246251565e-16
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.0669999999999933
+2023-01-31 14:26:59,971 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.0679999999999932
+2023-01-31 14:27:00,046 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.1224999999999874
+2023-01-31 14:27:00,046 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.1234999999999873
+2023-01-31 14:27:00,047 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.1469999999999845
+2023-01-31 14:27:00,047 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.1479999999999844
+2023-01-31 14:27:00,047 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.1469999999999845
+2023-01-31 14:27:00,047 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.1479999999999844
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.1924999999999797
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.1934999999999796
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.2179999999999767
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.2169999999999768
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.2179999999999767
+2023-01-31 14:27:00,120 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.2169999999999768
+2023-01-31 14:27:00,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.2634999999999719
+2023-01-31 14:27:00,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.2644999999999718
+2023-01-31 14:27:00,195 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.2889999999999688
+2023-01-31 14:27:00,195 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.287999999999969
+2023-01-31 14:27:00,196 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.2889999999999688
+2023-01-31 14:27:00,196 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.287999999999969
+2023-01-31 14:27:00,270 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.343499999999963
+2023-01-31 14:27:00,270 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.344499999999963
+2023-01-31 14:27:00,271 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.3679999999999601
+2023-01-31 14:27:00,271 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.36899999999996
+2023-01-31 14:27:00,271 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.3679999999999601
+2023-01-31 14:27:00,271 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.36899999999996
+2023-01-31 14:27:00,346 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.4144999999999552
+2023-01-31 14:27:00,346 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.4154999999999551
+2023-01-31 14:27:00,346 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.4389999999999523
+2023-01-31 14:27:00,347 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.4399999999999522
+2023-01-31 14:27:00,347 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.4389999999999523
+2023-01-31 14:27:00,347 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.4399999999999522
+2023-01-31 14:27:00,420 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.4944999999999464
+2023-01-31 14:27:00,420 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.4954999999999463
+2023-01-31 14:27:00,420 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.5189999999999435
+2023-01-31 14:27:00,420 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.5199999999999434
+2023-01-31 14:27:00,421 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.5189999999999435
+2023-01-31 14:27:00,421 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.5199999999999434
+2023-01-31 14:27:00,494 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.5654999999999386
+2023-01-31 14:27:00,495 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.5664999999999385
+2023-01-31 14:27:00,495 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.5909999999999356
+2023-01-31 14:27:00,495 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.5899999999999357
+2023-01-31 14:27:00,495 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.5909999999999356
+2023-01-31 14:27:00,495 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.5899999999999357
+2023-01-31 14:27:00,570 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.6454999999999298
+2023-01-31 14:27:00,570 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.6464999999999297
+2023-01-31 14:27:00,570 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.6699999999999269
+2023-01-31 14:27:00,570 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.6709999999999268
+2023-01-31 14:27:00,571 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.6699999999999269
+2023-01-31 14:27:00,571 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.6709999999999268
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.716499999999922
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.7174999999999219
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.740999999999919
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.741999999999919
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.740999999999919
+2023-01-31 14:27:00,646 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.741999999999919
+2023-01-31 14:27:00,720 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.7964999999999132
+2023-01-31 14:27:00,720 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.797499999999913
+2023-01-31 14:27:00,720 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.8209999999999102
+2023-01-31 14:27:00,721 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.8219999999999101
+2023-01-31 14:27:00,721 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.8209999999999102
+2023-01-31 14:27:00,721 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.8219999999999101
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.8674999999999053
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.8684999999999052
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.8929999999999023
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.8919999999999024
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.8929999999999023
+2023-01-31 14:27:00,795 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.8919999999999024
+2023-01-31 14:27:00,870 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.9474999999998965
+2023-01-31 14:27:00,870 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.9484999999998964
+2023-01-31 14:27:00,870 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.9719999999998936
+2023-01-31 14:27:00,871 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.9729999999998935
+2023-01-31 14:27:00,871 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.9719999999998936
+2023-01-31 14:27:00,871 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.9729999999998935
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0080999999999998
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.7999999999999998
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0089
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 2.220446049250313e-16
+2023-01-31 14:27:00,946 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 1.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 2.220446049250313e-16
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 1.0
+2023-01-31 14:27:00,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 2.220446049250313e-16
+2023-01-31 14:27:01,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0245
+2023-01-31 14:27:01,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:01,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:01,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0244999999999997
+2023-01-31 14:27:01,020 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.996
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9969999999999999
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: -1.0
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.996
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9969999999999999
+2023-01-31 14:27:01,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: -1.0
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0234
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.02318
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.21999999999999997
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9820000000000002
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.982
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-01-31 14:27:01,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9820000000000002
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.982
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:01,096 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_highmark: 3.3306690738754696e-16
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.7199999999999998
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9701
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9708200000000002
+2023-01-31 14:27:01,170 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9855999999999996
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.1
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9854999999999996
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9855999999999996
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.1
+2023-01-31 14:27:01,171 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9854999999999996
+2023-01-31 14:27:01,245 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9575
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9575
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9936999999999987
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9935999999999985
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9936999999999987
+2023-01-31 14:27:01,246 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:01,247 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9935999999999985
+2023-01-31 14:27:01,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:27:01,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:01,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.1
+2023-01-31 14:27:01,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9587000000000001
+2023-01-31 14:27:01,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9587999999999999
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9340000000000002
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9460000000000002
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: -11.999999999999998
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_highmark: 3.3306690738754696e-16
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9340000000000002
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9460000000000002
+2023-01-31 14:27:01,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: -11.999999999999998
+2023-01-31 14:27:01,322 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_highmark: 3.3306690738754696e-16
+2023-01-31 14:27:01,404 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.966899999999999
+2023-01-31 14:27:01,404 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:01,404 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9667999999999988
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 3.0545264095849234e-09
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homed: 1
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -8.564223074746143e-17
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 3.0545263239426926e-09
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 0
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 3.0545264095849234e-09
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homed: 1
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-01-31 14:27:01,405 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -8.564223074746143e-17
+2023-01-31 14:27:01,406 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 3.0545263239426926e-09
+2023-01-31 14:27:01,406 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-01-31 14:27:01,406 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 0
+2023-01-31 14:27:01,470 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.973799999999998
+2023-01-31 14:27:01,470 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9738999999999982
+2023-01-31 14:27:01,546 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9817999999999971
+2023-01-31 14:27:01,546 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9818999999999973
+2023-01-31 14:27:01,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9889999999999965
+2023-01-31 14:27:01,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:01,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9888999999999966
+2023-01-31 14:27:01,694 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9958999999999958
+2023-01-31 14:27:01,694 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9959999999999958
+2023-01-31 14:27:01,769 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9795
+2023-01-31 14:27:01,769 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9804000000000002
+2023-01-31 14:27:01,770 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-01-31 14:27:01,770 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.9000000000000005
+2023-01-31 14:27:01,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8452000000000002
+2023-01-31 14:27:01,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.5000000000000018
+2023-01-31 14:27:01,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:01,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8427
+2023-01-31 14:27:01,919 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.920000000000003
+2023-01-31 14:27:01,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:01,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.6140799999999998
+2023-01-31 14:27:01,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.6179999999999999
+2023-01-31 14:27:01,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.33073953448079396
+2023-01-31 14:27:01,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -5.551115123125783e-17
+2023-01-31 14:27:01,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.6173041362019425
+2023-01-31 14:27:01,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.327122230344592
+2023-01-31 14:27:02,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.10232485906614386
+2023-01-31 14:27:02,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.10032164519641934
+2023-01-31 14:27:02,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.003213869724542
+2023-01-31 14:27:02,070 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.7755575615628914e-17
+2023-01-31 14:27:02,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 4.5102810375396984e-17
+2023-01-31 14:27:02,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.6150219807788756
+2023-01-31 14:27:02,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.010071322901808122
+2023-01-31 14:27:02,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.009456300921029292
+2023-01-31 14:27:02,229 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 3.566805961696673e-09
+2023-01-31 14:27:02,229 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homed: 1
+2023-01-31 14:27:02,229 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 4.7300702054844284e-17
+2023-01-31 14:27:02,229 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:02,229 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 3.566806008997375e-09
+2023-01-31 14:27:02,230 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:02,230 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 0
+2023-01-31 14:27:02,282 - qtpyvcp.plugins.notifications - ERROR - Cannot home while shared home 
+ switch is closed j=0
+2023-01-31 14:27:02,440 - qtpyvcp.plugins.notifications - ERROR - Cannot home while shared home 
+ switch is closed j=1
+2023-01-31 14:27:09,770 - qtpyvcp.actions.machine_actions - INFO - Homing all axes
+2023-01-31 14:27:09,840 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homed: 0
+2023-01-31 14:27:09,841 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 1
+2023-01-31 14:27:09,841 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homed: 0
+2023-01-31 14:27:09,841 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 1
+2023-01-31 14:27:09,841 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homed: 0
+2023-01-31 14:27:09,841 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 1
+2023-01-31 14:27:09,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:27:09,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -7.567731163948821e-17
+2023-01-31 14:27:09,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.0011000035668060088
+2023-01-31 14:27:09,946 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.19999999999999998
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.0009000035668060846
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 1.0
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.010000003054526325
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.009000003054526307
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.734723475976807e-17
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 1.0
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.010000003054526325
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.009000003054526307
+2023-01-31 14:27:09,947 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.734723475976807e-17
+2023-01-31 14:27:10,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.7755575615628914e-17
+2023-01-31 14:27:10,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.06550000356680608
+2023-01-31 14:27:10,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 1.0
+2023-01-31 14:27:10,020 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.06650000356680605
+2023-01-31 14:27:10,020 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.0910000030545264
+2023-01-31 14:27:10,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.09000000305452627
+2023-01-31 14:27:10,021 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.249000902703301e-16
+2023-01-31 14:27:10,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.0910000030545264
+2023-01-31 14:27:10,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.09000000305452627
+2023-01-31 14:27:10,021 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.249000902703301e-16
+2023-01-31 14:27:10,094 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.13550000356680614
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.1365000035668061
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.16000000305452633
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.16100000305452644
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.16000000305452633
+2023-01-31 14:27:10,095 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.16100000305452644
+2023-01-31 14:27:10,169 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.21750000356680618
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.2165000035668061
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 8.326672684688674e-17
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.2420000030545265
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.2410000030545265
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.2420000030545265
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:10,170 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.2410000030545265
+2023-01-31 14:27:10,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.28650000356680616
+2023-01-31 14:27:10,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 5.551115123125783e-17
+2023-01-31 14:27:10,246 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.2875000035668062
+2023-01-31 14:27:10,246 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.3120000030545266
+2023-01-31 14:27:10,247 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.3110000030545266
+2023-01-31 14:27:10,247 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.3120000030545266
+2023-01-31 14:27:10,247 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.3110000030545266
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.3675000035668061
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.3685000035668063
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 1.6653345369377348e-16
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.39200000305452654
+2023-01-31 14:27:10,320 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.39300000305452665
+2023-01-31 14:27:10,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.39200000305452654
+2023-01-31 14:27:10,321 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.39300000305452665
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.43850000356680635
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.4375000035668064
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -5.551115123125783e-17
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.4620000030545266
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.4630000030545267
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.4620000030545266
+2023-01-31 14:27:10,395 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.4630000030545267
+2023-01-31 14:27:10,469 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.5085000035668064
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.5075000035668062
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.5320000030545267
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.5330000030545268
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.5320000030545267
+2023-01-31 14:27:10,470 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.5330000030545268
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.5885000035668062
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.5895000035668064
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.6140000030545268
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:10,546 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.6130000030545268
+2023-01-31 14:27:10,547 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.6140000030545268
+2023-01-31 14:27:10,547 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:10,547 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.6130000030545268
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.6585000035668065
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.6595000035668065
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.6840000030545269
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.6830000030545267
+2023-01-31 14:27:10,620 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,621 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.6840000030545269
+2023-01-31 14:27:10,621 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.6830000030545267
+2023-01-31 14:27:10,621 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7395000035668065
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7405000035668066
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.7640000030545269
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.765000003054527
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 1.1102230246251565e-16
+2023-01-31 14:27:10,695 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.7640000030545269
+2023-01-31 14:27:10,696 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.765000003054527
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8095000035668065
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8105000035668066
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.8340000030545269
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.835000003054527
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.8340000030545269
+2023-01-31 14:27:10,770 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.835000003054527
+2023-01-31 14:27:10,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.8915000035668067
+2023-01-31 14:27:10,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.8905000035668067
+2023-01-31 14:27:10,846 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:10,846 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9160000030545271
+2023-01-31 14:27:10,847 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,847 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9150000030545269
+2023-01-31 14:27:10,847 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9160000030545271
+2023-01-31 14:27:10,847 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,847 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9150000030545269
+2023-01-31 14:27:10,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9605000035668065
+2023-01-31 14:27:10,920 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9615000035668068
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9860000030545272
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9850000030545272
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9860000030545272
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:10,921 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9850000030545272
+2023-01-31 14:27:10,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0237800000000004
+2023-01-31 14:27:10,995 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.1599999999999994
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0239400000000003
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 1.0
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9999999999999998
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 1.0
+2023-01-31 14:27:10,996 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-01-31 14:27:10,997 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:10,997 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9999999999999998
+2023-01-31 14:27:10,997 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-01-31 14:27:11,071 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0245000000000002
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0245000000000002
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9819999999999998
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 0.0
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9819999999999998
+2023-01-31 14:27:11,072 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9819999999999998
+2023-01-31 14:27:11,073 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 0.0
+2023-01-31 14:27:11,073 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9819999999999998
+2023-01-31 14:27:11,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 1.0055800000000001
+2023-01-31 14:27:11,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:27:11,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.8600000000000004
+2023-01-31 14:27:11,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:11,146 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 1.0064400000000004
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9577000000000004
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.07999999999999939
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9576200000000002
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9886999999999988
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 0
+2023-01-31 14:27:11,220 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.1
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.988799999999999
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9886999999999988
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 0
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.1
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.988799999999999
+2023-01-31 14:27:11,221 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:11,295 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:11,295 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9575000000000002
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9575000000000005
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.9967999999999981
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.9966999999999979
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.9967999999999981
+2023-01-31 14:27:11,296 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.9966999999999979
+2023-01-31 14:27:11,370 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 0
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9619999999999997
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.1
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9618999999999995
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 0.2267177907419342
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: -22.15728361305402
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 0.20456050712888005
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -1.3877787807814457e-16
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 0.2267177907419342
+2023-01-31 14:27:11,371 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: -22.15728361305402
+2023-01-31 14:27:11,372 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 0.20456050712888005
+2023-01-31 14:27:11,372 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -1.3877787807814457e-16
+2023-01-31 14:27:11,456 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9699999999999989
+2023-01-31 14:27:11,456 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9698999999999987
+2023-01-31 14:27:11,456 - qtpyvcp.plugins.status - DEBUG - JOINT_3 input: 3.0545264095849234e-09
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homed: 1
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 velocity: 0.0
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 ferror_current: -8.564223074746143e-17
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 output: 3.0545263239426926e-09
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 inpos: 1
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_3 homing: 0
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_4 input: 3.0545264095849234e-09
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homed: 1
+2023-01-31 14:27:11,457 - qtpyvcp.plugins.status - DEBUG - JOINT_4 velocity: 0.0
+2023-01-31 14:27:11,458 - qtpyvcp.plugins.status - DEBUG - JOINT_4 ferror_current: -8.564223074746143e-17
+2023-01-31 14:27:11,458 - qtpyvcp.plugins.status - DEBUG - JOINT_4 output: 3.0545263239426926e-09
+2023-01-31 14:27:11,458 - qtpyvcp.plugins.status - DEBUG - JOINT_4 inpos: 1
+2023-01-31 14:27:11,458 - qtpyvcp.plugins.status - DEBUG - JOINT_4 homing: 0
+2023-01-31 14:27:11,519 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9769999999999981
+2023-01-31 14:27:11,520 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:11,520 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9770999999999981
+2023-01-31 14:27:11,594 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9839999999999973
+2023-01-31 14:27:11,595 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9840999999999973
+2023-01-31 14:27:11,670 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9920999999999962
+2023-01-31 14:27:11,670 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 2.220446049250313e-16
+2023-01-31 14:27:11,670 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9921999999999964
+2023-01-31 14:27:11,746 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.9990999999999959
+2023-01-31 14:27:11,746 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -2.220446049250313e-16
+2023-01-31 14:27:11,746 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9991999999999956
+2023-01-31 14:27:11,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.9447
+2023-01-31 14:27:11,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.4800000000000009
+2023-01-31 14:27:11,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:11,820 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.94618
+2023-01-31 14:27:11,895 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: -1.1102230246251565e-16
+2023-01-31 14:27:11,896 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.7942800000000001
+2023-01-31 14:27:11,896 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -2.880000000000002
+2023-01-31 14:27:11,896 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.7914
+2023-01-31 14:27:11,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -4.435265555879018
+2023-01-31 14:27:11,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.49178951377917024
+2023-01-31 14:27:11,970 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.4962247793350494
+2023-01-31 14:27:12,045 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.23089501244600905
+2023-01-31 14:27:12,046 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.23393405843082737
+2023-01-31 14:27:12,046 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 0.0
+2023-01-31 14:27:12,046 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -3.0390459848183218
+2023-01-31 14:27:12,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 0.05230689365182146
+2023-01-31 14:27:12,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.053753363750396854
+2023-01-31 14:27:12,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 4.85722573273506e-17
+2023-01-31 14:27:12,120 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -1.446470098575445
+2023-01-31 14:27:12,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 0.00014408906283303047
+2023-01-31 14:27:12,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 1.9488534050426942e-17
+2023-01-31 14:27:12,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 8.558070332068976e-05
+2023-01-31 14:27:12,195 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: -0.05850835951236019
+2023-01-31 14:27:12,242 - qtpyvcp.plugins.notifications - ERROR - Cannot home while shared home 
+ switch is closed j=0
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 input: 3.566805961696673e-09
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homed: 1
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 ferror_current: 4.7300702054844284e-17
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 velocity: 0.0
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 output: 3.566806008997375e-09
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 inpos: 1
+2023-01-31 14:27:12,283 - qtpyvcp.plugins.status - DEBUG - JOINT_2 homing: 0
+2023-01-31 14:27:12,440 - qtpyvcp.plugins.notifications - ERROR - Cannot home while shared home 
+ switch is closed j=1
+2023-01-31 14:27:22,446 - qtpyvcp - DEBUG - Terminating widgets
+2023-01-31 14:27:22,453 - qtpyvcp.plugins - DEBUG - Terminating 'virtual_input' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'file_locations' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'notifications' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'offsettable' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'tooltable' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'position' plugin
+2023-01-31 14:27:22,454 - qtpyvcp.plugins - DEBUG - Terminating 'settings' plugin
+2023-01-31 14:27:22,455 - qtpyvcp.plugins - DEBUG - Terminating 'persistent_data_manager' plugin
+2023-01-31 14:27:22,455 - qtpyvcp.plugins.persistent_data_manager - DEBUG - Writing persistent data to file: /home/forgedauthority/linuxcnc/configs/probe_basic/.vcp_persistent_data.pickle
+2023-01-31 14:27:22,456 - qtpyvcp.plugins - DEBUG - Terminating 'status' plugin

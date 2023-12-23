@@ -1,0 +1,11 @@
+o<m25> sub
+
+M65 P0; switch off carousel left solonoid
+M64 P1 ; Move Carousel right
+M66 P7 L3 Q5 ; check for carousel right sensor
+
+O130 if [#5399 LT 0]
+    (abort, atc not in position)
+O130 endif
+
+M2

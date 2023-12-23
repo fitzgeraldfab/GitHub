@@ -1,0 +1,62 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 957x973+440+-8
+placeFrames 0.4275132275132275
+set ::ratio 0.4275132275132275
+set ::old_w_leftf 160
+set ::watchlist {
+    sig+atc-is-down
+    sig+atc-is-up
+    sig+atc-is-left
+    sig+atc-is-right
+    sig+atc-left
+    sig+atc-rev
+    sig+atc-right
+    sig+atc-zero
+    sig+spindle-revs
+    sig+spindle-vel-fb-rpm
+    sig+spindle-at-speed
+    pin+hm2_7i76e.0.7i76.0.0.input-03
+    pin+hm2_7i76e.0.7i76.0.0.input-04-not
+    pin+hm2_7i76e.0.7i76.0.0.input-05
+    pin+hm2_7i76e.0.7i76.0.0.input-04
+    pin+hm2_7i76e.0.7i76.0.0.input-02
+    pin+or2.0.in0
+    pin+or2.0.in1
+    pin+or2.0.out
+    pin+spindle.0.at-speed
+    sig+spindle-enable
+    pin+spindle.0.speed-out-rps-abs
+    pin+spindle.0.speed-out-abs
+    pin+spindle.0.orient-angle
+    pin+spindle.0.orient-fault
+    pin+spindle.0.orient-mode
+    pin+spindle.0.reverse
+    pin+spindle.0.revs
+    pin+spindle.0.speed-in
+    pin+hm2_7i76e.0.7i76.0.0.output-00
+    pin+hm2_7i76e.0.7i76.0.0.output-01
+    pin+hm2_7i76e.0.7i76.0.0.output-02
+    pin+hm2_7i76e.0.7i76.0.0.output-04
+    pin+motion.digital-out-00
+    pin+motion.digital-out-01
+    pin+motion.digital-out-03
+    pin+motion.digital-out-02
+    pin+motion.digital-out-05
+    pin+motion.digital-out-06
+    pin+motion.digital-out-07
+    pin+motion.digital-out-08
+    pin+motion.digital-out-09
+    pin+motion.digital-out-11
+    pin+motion.digital-out-04
+    pin+motion.digital-out-12
+    pin+motion.digital-in-11
+    pin+motion.digital-in-12
+}
+set ::workmode watchhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
